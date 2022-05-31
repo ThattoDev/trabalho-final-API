@@ -8,4 +8,5 @@ public class Cliente {
 	private String email;
 	private String idade;
 	private String altura;
+	private String celular;
 }
