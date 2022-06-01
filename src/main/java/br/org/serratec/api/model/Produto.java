@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -19,7 +19,7 @@ import javax.validation.constraints.Size;
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idproduto")
+	@Column(name = "id_produto")
 	private Long idproduto;
 	
 	@NotBlank(message = "nome vazio")  
@@ -49,8 +49,8 @@ public class Produto {
 	@Column(name = "datacadastro", nullable = false)  
 	private LocalDate datacadastro;
 	
-	@OneToMany
-	@JoinColumn(name = "idcategoria")
+	@ManyToOne
+	@JoinColumn(name = "id_categoria")
 	private Categoria categoria;
 	
 

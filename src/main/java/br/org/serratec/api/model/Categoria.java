@@ -12,6 +12,7 @@ import javax.validation.constraints.Size;
 public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_categoria")
 	private Long idcategoria;
 	
 	@NotBlank(message = "nome vazio")  
