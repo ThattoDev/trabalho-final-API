@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import br.org.serratec.api.model.Cliente;
 import br.org.serratec.api.model.Pedido;
-import br.org.serratec.backend.dto.ItemPedidoDTO;
+import br.org.serratec.api.dto.PedidoItemDTO;
 
 public class PedidoDTO {
 	private Long id;
@@ -28,7 +28,7 @@ public class PedidoDTO {
 		this.status = pedido.getStatus();
 		this.cliente = pedido.getCliente();
 		if (pedido.getPedidoItem() != null) {
-			this.pedidoItem = pedido.getPedidoItem().stream().map(pi -> new ItemPedidoDTO(pi))
+			this.pedidoItem = pedido.getPedidoItem().stream().map(pi -> new PedidoItemDTO(pi))
 				.collect(Collectors.toList());
 			this.vlTotal = pedido.getVlTotal();
 		}	
