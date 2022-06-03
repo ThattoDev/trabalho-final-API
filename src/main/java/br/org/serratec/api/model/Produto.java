@@ -20,7 +20,7 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	private Long idproduto;
+	private Long id;
 	
 	@NotBlank(message = "nome vazio")  
 	@Size(max = 40)
@@ -74,12 +74,12 @@ public class Produto {
 	}
 
 
-	public Long getIdproduto() {
-		return idproduto;
+	public Long getId() {
+		return id;
 	}
 
-	public void setIdproduto(Long idproduto) {
-		this.idproduto = idproduto;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNmproduto() {
