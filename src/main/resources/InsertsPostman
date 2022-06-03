@@ -1,0 +1,36 @@
+---------------------CATEGORIA------------------------
+{
+    "nomeCategoria": "Smartphones",
+    "descricaoCategoria": "Eletros"
+}
+
+{
+    "nomeCategoria": "Tablets",
+    "descricaoCategoria": "Eletros"
+}
+
+
+---------------------PRODUTO------------------------
+{
+    "nomeProduto": "Iphone X",
+    "custo": 3000,
+    "precoUnitario" : 6000,
+    "descricaoProduto": "Iphone 128GB",
+    "quantidadeEstoque": 3,
+    "categoria": {
+        "idCategoria": 1
+    }
+}
+
+
+{
+    "nomeProduto": "Ipad 9",
+    "custo": 4000,
+    "precoUnitario" : 8000,
+    "descricaoProduto": "Ipad nona geração 64GB",
+    "quantidadeEstoque": 5,
+    "categoria": {
+        "idCategoria": 2
+    }
+}
+
