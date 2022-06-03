@@ -21,8 +21,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import br.org.serratec.backend.model.Cliente;
-import br.org.serratec.backend.model.ItemPedido;
+import br.org.serratec.api.model.Cliente;
+import br.org.serratec.api.model.PedidoItem;
 
 @Entity
 public class Pedido {

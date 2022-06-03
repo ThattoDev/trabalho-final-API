@@ -14,7 +14,7 @@ public class PedidoDTO {
 	private LocalDate dtEmissao;
 	private LocalDate dtEntrega;
 	private LocalDate dtEnvio;
-	private BigDecimal vlTotal;
+	private Float vlTotal;
 	private String status;
 	private Cliente cliente;
 	private List<PedidoItemDTO> pedidoItem;
@@ -58,11 +58,11 @@ public class PedidoDTO {
 		this.dtEnvio = dtEnvio;
 	}
 
-	public BigDecimal getVlTotal() {
+	public Float getVlTotal() {
 		return vlTotal;
 	}
 
-	public void setVlTotal(BigDecimal vlTotal) {
+	public void setVlTotal(Float vlTotal) {
 		this.vlTotal = vlTotal;
 	}
 
