@@ -30,12 +30,12 @@ public class Produto {
 	@NotBlank(message = "custo vazio")  
 	@Column(name = "custo", nullable = false) 
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
-	private BigDecimal custo;
+	private Float custo;
 	
 	@NotBlank(message = "preço vazio")  
 	@Column(name = "preco_unit", nullable = false) 
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
-	private BigDecimal preco_unit;
+	private Float preco_unit;
 	 
 	@Size(max = 100)
 	@Column(name = "descricao_prod")  
@@ -59,8 +59,8 @@ public class Produto {
 
 	public Produto(Long idproduto,
 			@NotBlank(message = "nome vazio") @Size(max = 40, message = "Preencha o nome!") String nmproduto,
-			@NotBlank(message = "custo vazio") BigDecimal custo,
-			@NotBlank(message = "preço vazio") BigDecimal preco_unit,
+			@NotBlank(message = "custo vazio") Float custo,
+			@NotBlank(message = "preço vazio") Float preco_unit,
 			@Size(max = 100, message = "Preencha a descrição!") String descricao_prod,
 			@NotBlank(message = "quantidade vazia") Integer qtd_estoque, LocalDate datacadastro, Categoria categoria) {
 		this.idproduto = idproduto;
@@ -90,19 +90,19 @@ public class Produto {
 		this.nmproduto = nmproduto;
 	}
 
-	public BigDecimal getCusto() {
+	public Float getCusto() {
 		return custo;
 	}
 
-	public void setCusto(BigDecimal custo) {
+	public void setCusto(Float custo) {
 		this.custo = custo;
 	}
 
-	public BigDecimal getPreco_unit() {
+	public Float getPreco_unit() {
 		return preco_unit;
 	}
 
-	public void setPreco_unit(BigDecimal preco_unit) {
+	public void setPreco_unit(Float preco_unit) {
 		this.preco_unit = preco_unit;
 	}
 

@@ -8,7 +8,7 @@ import br.org.serratec.api.model.Produto;
 public class ProdutoResponseDTO {
 	private Long idproduto;
 	private String nmproduto;	
-	private BigDecimal preco_unit;
+	private Float preco_unit;
 	private String descricao_prod;
 	private Integer qtd_estoque;
 	private Categoria categoria;
@@ -40,11 +40,11 @@ public class ProdutoResponseDTO {
 		this.nmproduto = nmproduto;
 	}
 
-	public BigDecimal getPreco_unit() {
+	public Float getPreco_unit() {
 		return preco_unit;
 	}
 
-	public void setPreco_unit(BigDecimal preco_unit) {
+	public void setPreco_unit(Float preco_unit) {
 		this.preco_unit = preco_unit;
 	}
 

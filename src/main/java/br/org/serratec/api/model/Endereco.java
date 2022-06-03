@@ -5,62 +5,48 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.Table;
 
 @Entity
+@Table(schema = "apiprova")
 public class Endereco {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idendereco;
-	
-	@Column(name = "cep")  
+	@Column(name = "id_endereco")
+	private Integer id;
+
 	private String cep;
-	
-	@NotBlank(message = "rua vazia")  
-	@Size(max = 50, message = "Preencha a rua!")
-	@Column(name = "rua", nullable = false)  
-	private String rua;
-	
-	@NotBlank(message = "bairro vazio")  
-	@Size(max = 50, message = "Preencha o bairro!")
-	@Column(name = "bairro", nullable = false)  
+
+	@Column(name = "rua")
+	private String logradouro;
+
 	private String bairro;
-	
-	@NotBlank(message = "cidade vazio")  
-	@Size(max = 50, message = "Preencha a cidade!")
-	@Column(name = "localidade", nullable = false)  
+
+	@Column(name = "cidade")
 	private String localidade;
-	
-	@NotBlank(message = "uf vazia")  
-	@Size(max = 5, message = "Preencha a uf!")
-	@Column(name = "uf", nullable = false)  
+
+	@Column(name = "estado")
 	private String uf;
 
 	public Endereco() {
-		super();
+
 	}
 
-	public Endereco(Long idendereco, String cep,
-			@NotBlank(message = "rua vazia") @Size(max = 50, message = "Preencha a rua!") String rua,
-			@NotBlank(message = "bairro vazio") @Size(max = 50, message = "Preencha o bairro!") String bairro,
-			@NotBlank(message = "cidade vazio") @Size(max = 50, message = "Preencha a cidade!") String localidade,
-			@NotBlank(message = "uf vazia") @Size(max = 5, message = "Preencha a uf!") String uf) {
-		super();
-		this.idendereco = idendereco;
+	public Endereco(String cep, String rua, String bairro, String cidade, String estado) {
 		this.cep = cep;
-		this.rua = rua;
+		this.logradouro = rua;
 		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
+		this.localidade = cidade;
+		this.uf = estado;
 	}
 
-	public Long getIdendereco() {
-		return idendereco;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setIdendereco(Long idendereco) {
-		this.idendereco = idendereco;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getCep() {
@@ -71,20 +57,20 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
 	public String getBairro() {
 		return bairro;
 	}
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public String getLogradouro() {
+		return logradouro;
+	}
+
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getLocalidade() {
@@ -102,4 +88,30 @@ public class Endereco {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Endereco other = (Endereco) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
+
 }

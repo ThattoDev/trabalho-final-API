@@ -18,11 +18,11 @@ public class ProdutoInserirDTO {
 	
 	@NotBlank(message = "custo vazio") 
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")
-	private BigDecimal custo;
+	private Float custo;
 	
 	@NotBlank(message = "preço vazio")  
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
-	private BigDecimal preco_unit;
+	private Float preco_unit;
 	
 	@Size(max = 100)
 	private String descricao_prod;
@@ -54,19 +54,19 @@ public class ProdutoInserirDTO {
 		this.nmproduto = nmproduto;
 	}
 
-	public BigDecimal getCusto() {
+	public Float getCusto() {
 		return custo;
 	}
 
-	public void setCusto(BigDecimal custo) {
+	public void setCusto(Float custo) {
 		this.custo = custo;
 	}
 
-	public BigDecimal getPreco_unit() {
+	public Float getPreco_unit() {
 		return preco_unit;
 	}
 
-	public void setPreco_unit(BigDecimal preco_unit) {
+	public void setPreco_unit(Float preco_unit) {
 		this.preco_unit = preco_unit;
 	}
 
