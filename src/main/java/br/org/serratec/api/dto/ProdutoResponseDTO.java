@@ -6,7 +6,7 @@ import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.model.Produto;
 
 public class ProdutoResponseDTO {
-	private Long idproduto;
+	private Long id;
 	private String nmproduto;	
 	private BigDecimal preco_unit;
 	private String descricao_prod;
@@ -16,7 +16,7 @@ public class ProdutoResponseDTO {
 	public ProdutoResponseDTO() {}
 
 	public ProdutoResponseDTO(Produto produto) {
-		this.idproduto = produto.getIdproduto();
+		this.id = produto.getId();
 		this.nmproduto = produto.getNmproduto();
 		this.preco_unit = produto.getPreco_unit();
 		this.descricao_prod = produto.getDescricao_prod();
@@ -25,11 +25,11 @@ public class ProdutoResponseDTO {
 	}
 
 	public Long getIdproduto() {
-		return idproduto;
+		return id;
 	}
 
-	public void setIdproduto(Long idproduto) {
-		this.idproduto = idproduto;
+	public void setIdproduto(Long id) {
+		this.id = id;
 	}
 
 	public String getNmproduto() {

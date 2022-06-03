@@ -39,23 +39,6 @@ public class Endereco {
 	@Column(name = "uf", nullable = false)  
 	private String uf;
 
-	public Endereco() {
-		super();
-	}
-
-	public Endereco(Long idendereco, String cep,
-			@NotBlank(message = "rua vazia") @Size(max = 50, message = "Preencha a rua!") String rua,
-			@NotBlank(message = "bairro vazio") @Size(max = 50, message = "Preencha o bairro!") String bairro,
-			@NotBlank(message = "cidade vazio") @Size(max = 50, message = "Preencha a cidade!") String localidade,
-			@NotBlank(message = "uf vazia") @Size(max = 5, message = "Preencha a uf!") String uf) {
-		super();
-		this.idendereco = idendereco;
-		this.cep = cep;
-		this.rua = rua;
-		this.bairro = bairro;
-		this.localidade = localidade;
-		this.uf = uf;
-	}
 
 	public Long getIdendereco() {
 		return idendereco;
