@@ -16,7 +16,7 @@ public class ClienteInserirDTO {
 	private String senha;
 	private String nrendereco;
 	private String complemento;
-	private Endereco endereco;
+	private EnderecoInserirDTO endereco;
 	
 	
 	public ClienteInserirDTO(Cliente cliente) {
@@ -29,7 +29,8 @@ public class ClienteInserirDTO {
 		this.senha = cliente.getSenha();
 		this.nrendereco = cliente.getNrendereco();
 		this.complemento = cliente.getComplemento();
-		this.endereco = cliente.getEndereco();
+		EnderecoInserirDTO endereco = new EnderecoInserirDTO(cliente.getEndereco());
+        this.endereco = endereco;
 		
 	}
 	
@@ -103,11 +104,11 @@ public class ClienteInserirDTO {
 	
 
 
-	public Endereco getEndereco() {
+	public EnderecoInserirDTO getEndereco() {
 		return endereco;
 	}
 
-	public void setEndereco(Endereco endereco) {
+	public void setEndereco(EnderecoInserirDTO endereco) {
 		this.endereco = endereco;
 	}
 	

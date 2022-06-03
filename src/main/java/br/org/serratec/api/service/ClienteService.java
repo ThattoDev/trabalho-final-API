@@ -42,6 +42,9 @@ public class ClienteService {
 	@Autowired
 	private MailConfig mailConfig;
 	
+	@Autowired
+	private EnderecoService enderecoService;
+	
 	
 	public List<ClienteDTO> listar() {
         List<Cliente> clientes = clienteRepository.findAll();
@@ -103,11 +106,12 @@ public class ClienteService {
 		cliente.setNrendereco(clienteInserirDto.getNrendereco());
 		cliente.setComplemento(clienteInserirDto.getComplemento());
 		
-		EnderecoDTO var = EnderecoService.inserir(clienteInserirDto.getEndereco());
+		
+		EnderecoDTO var = enderecoService.inserir(clienteInserirDto.getEndereco());
 		Endereco endereco = new Endereco(var.getCep(), var.getLogradouro(), var.getBairro(), var.getLocalidade(),var.getUf());
 		
-		clienteInserirDto.setEndereco(endereco);
-		cliente.setEndereco(clienteInserirDto.getEndereco());
+		//clienteInserirDto.setEndereco(endereco);
+		cliente.setEndereco(endereco);
 
 		clienteRepository.save(cliente);
 		mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Cadastro confirmado!", cliente.toString());
@@ -128,12 +132,12 @@ public class ClienteService {
 			cliente.setNrendereco(clienteInserirDto.getNrendereco());
 			cliente.setComplemento(clienteInserirDto.getComplemento());
 			
-			EnderecoDTO var = EnderecoService.inserir(clienteInserirDto.getEndereco());
+			EnderecoDTO var = enderecoService.inserir(clienteInserirDto.getEndereco());
 			Endereco endereco = new Endereco(var.getCep(), var.getLogradouro(), var.getBairro(), var.getLocalidade(),
 					var.getUf());
 			
-			clienteInserirDto.setEndereco(endereco);
-			cliente.setEndereco(clienteInserirDto.getEndereco());
+			//clienteInserirDto.setEndereco(endereco);
+			cliente.setEndereco(endereco);
 			
 
 			clienteRepository.save(cliente);
