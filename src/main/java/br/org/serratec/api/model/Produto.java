@@ -46,7 +46,7 @@ public class Produto {
 	
 	public Produto() {}
 
-	/*public Produto(Long idProduto, String nomeProduto,BigDecimal custo, BigDecimal precoUnitario,
+	/*public Produto(Long idProduto, String nomeProduto, BigDecimal custo, BigDecimal precoUnitario,
 			String descricaoProduto, Integer quantidadeEstoque, LocalDate dataCadastro, Categoria categoria) {
 		this.idProduto = idProduto;
 		this.nomeProduto = nomeProduto;
