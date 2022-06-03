@@ -5,60 +5,50 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_categoria")
-	private Long idcategoria;
+	private Long idCategoria;
 	
-	@NotBlank(message = "nome vazio")  
-	@Size(max = 40, message = "Preencha a descrição!")
-	@Column(name = "nmproduto", nullable = false)  
-	private String nmcategoria;
+	@Column(name = "nome")  
+	private String nomeCategoria;
 	
-	@Size(max = 100, message = "Preencha a descrição!")
-	@Column(name = "descricao_categ")  
-	private String descricao_categ;
+	@Column(name = "descricao")  
+	private String descricaoCategoria;
 
 	
-	public Categoria() {
-		super();
+	public Categoria() {}
+
+	public Categoria(Long idCategoria, String nomeCategoria, String descricaoCategoria) {
+		this.idCategoria = idCategoria;
+		this.nomeCategoria = nomeCategoria;
+		this.descricaoCategoria = descricaoCategoria;
 	}
 
-	public Categoria(Long idcategoria,
-			@NotBlank(message = "nome vazio") @Size(max = 40, message = "Preencha a descrição!") String nmcategoria,
-			@Size(max = 100, message = "Preencha a descrição!") String descricao_categ) {
-		super();
-		this.idcategoria = idcategoria;
-		this.nmcategoria = nmcategoria;
-		this.descricao_categ = descricao_categ;
+	public Long getIdCategoria() {
+		return idCategoria;
 	}
 
-	public Long getIdcategoria() {
-		return idcategoria;
+	public void setIdCategoria(Long idCategoria) {
+		this.idCategoria = idCategoria;
 	}
 
-	public void setIdcategoria(Long idcategoria) {
-		this.idcategoria = idcategoria;
+	public String getNomeCategoria() {
+		return nomeCategoria;
 	}
 
-	public String getNmcategoria() {
-		return nmcategoria;
+	public void setNomeCategoria(String nomeCategoria) {
+		this.nomeCategoria = nomeCategoria;
 	}
 
-	public void setNmcategoria(String nmcategoria) {
-		this.nmcategoria = nmcategoria;
+	public String getDescricaoCategoria() {
+		return descricaoCategoria;
 	}
 
-	public String getDescricao_categ() {
-		return descricao_categ;
-	}
-
-	public void setDescricao_categ(String descricao_categ) {
-		this.descricao_categ = descricao_categ;
+	public void setDescricaoCategoria(String descricaoCategoria) {
+		this.descricaoCategoria = descricaoCategoria;
 	}
 }

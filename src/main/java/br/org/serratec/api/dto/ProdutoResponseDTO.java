@@ -1,67 +1,73 @@
 package br.org.serratec.api.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.model.Produto;
 
-public class ProdutoResponseDTO {
-	private Long idproduto;
-	private String nmproduto;	
-	private BigDecimal preco_unit;
-	private String descricao_prod;
-	private Integer qtd_estoque;
+public class ProdutoResponseDTO implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
+	private Long idProduto;
+	private String nomeProduto;	
+	private BigDecimal precoUnitario;
+	private String descricaoProduto;
+	private Integer quantidadeEstoque;
 	private Categoria categoria;
+	private LocalDate dataCadastro;
 	
 	public ProdutoResponseDTO() {}
 
 	public ProdutoResponseDTO(Produto produto) {
-		this.idproduto = produto.getIdproduto();
-		this.nmproduto = produto.getNmproduto();
-		this.preco_unit = produto.getPreco_unit();
-		this.descricao_prod = produto.getDescricao_prod();
-		this.qtd_estoque = produto.getQtd_estoque();
+		this.idProduto = produto.getIdProduto();
+		this.nomeProduto = produto.getNomeProduto();
+		this.precoUnitario = produto.getPrecoUnitario();
+		this.descricaoProduto = produto.getDescricaoProduto();
+		this.quantidadeEstoque = produto.getQuantidadeEstoque();
 		this.categoria = produto.getCategoria();
+		this.dataCadastro = produto.getDataCadastro();
 	}
 
-	public Long getIdproduto() {
-		return idproduto;
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
-	public void setIdproduto(Long idproduto) {
-		this.idproduto = idproduto;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
-	public String getNmproduto() {
-		return nmproduto;
+	public String getNomeProduto() {
+		return nomeProduto;
 	}
 
-	public void setNmproduto(String nmproduto) {
-		this.nmproduto = nmproduto;
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 
-	public BigDecimal getPreco_unit() {
-		return preco_unit;
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setPreco_unit(BigDecimal preco_unit) {
-		this.preco_unit = preco_unit;
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public String getDescricao_prod() {
-		return descricao_prod;
+	public String getDescricaoProduto() {
+		return descricaoProduto;
 	}
 
-	public void setDescricao_prod(String descricao_prod) {
-		this.descricao_prod = descricao_prod;
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
 
-	public Integer getQtd_estoque() {
-		return qtd_estoque;
+	public Integer getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQtd_estoque(Integer qtd_estoque) {
-		this.qtd_estoque = qtd_estoque;
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	public Categoria getCategoria() {
@@ -70,5 +76,13 @@ public class ProdutoResponseDTO {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
+	}
+
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 }

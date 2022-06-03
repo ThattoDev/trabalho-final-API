@@ -1,7 +1,6 @@
 package br.org.serratec.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -18,53 +17,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.org.serratec.api.dto.ProdutoInserirDTO;
-import br.org.serratec.api.dto.ProdutoResponseDTO;
-import br.org.serratec.api.service.ProdutoService;
+import br.org.serratec.api.dto.CategoriaDTO;
+import br.org.serratec.api.model.Categoria;
+import br.org.serratec.api.service.CategoriaService;
 
 @RestController
-@RequestMapping("/api/produtos")
-public class ProdutoController {
+@RequestMapping("/api/categorias")
+public class CategoriaController {
 	@Autowired
-	ProdutoService produtoService;
+	private CategoriaService categoriaService;
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ProdutoResponseDTO inserir(@Valid @RequestBody ProdutoInserirDTO dto) {
-		ProdutoResponseDTO produtoDTO = produtoService.inserirProduto(dto);
-		return produtoDTO;
+	public Categoria inserir(@Valid @RequestBody CategoriaDTO dto) {
+		return categoriaService.inserir(dto);
 	}
 	
 	@GetMapping
-	public ResponseEntity<List<ProdutoResponseDTO>> listar() {
-		List<ProdutoResponseDTO> produtoDTO = produtoService.listar();
-		return ResponseEntity.ok(produtoDTO);
+	public ResponseEntity<List<Categoria>> listar() {
+		List<Categoria> categoriaList = categoriaService.listar();
+		return ResponseEntity.ok(categoriaList);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoResponseDTO> listarId(@PathVariable Long id) {
-		Optional<ProdutoResponseDTO> produtoDTO = produtoService.listarPorId(id);
-		
-		if(produtoDTO != null) {
-			return ResponseEntity.ok(produtoDTO.get());
+	public ResponseEntity<Categoria> listarPorId(@PathVariable Long id) {
+		Categoria categoria = categoriaService.listarPorId(id);
+		if(categoria != null) {
+			return ResponseEntity.ok(categoria);
 		}
 		return ResponseEntity.notFound().build();
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> editar(@Valid @RequestBody ProdutoInserirDTO produtoDTO, @PathVariable Long id) {
-		if(produtoService.editar(produtoDTO, id) != null) {
-			return ResponseEntity.ok(produtoDTO);
+	@PutMapping("/{id}") 
+	public ResponseEntity<Object> editar(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) {
+		if(categoriaService.editar(categoriaDTO, id) != null) {
+			return ResponseEntity.ok(categoriaDTO);
 		}
 		return ResponseEntity.notFound().build();
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deletar(@PathVariable Long id) {
-		if(produtoService.listarPorId(id) != null) {
-			produtoService.deletar(id);
+		if(categoriaService.listarPorId(id) != null) {
+			categoriaService.deletar(id);
 			return ResponseEntity.ok().build();
 		}
 		return ResponseEntity.notFound().build();
 	}
 }
+

@@ -1,12 +1,13 @@
 package br.org.serratec.api.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import br.org.serratec.api.dto.ProdutoInserirDTO;
 import br.org.serratec.api.dto.ProdutoResponseDTO;
@@ -20,14 +21,15 @@ public class ProdutoService {
 	
 	public ProdutoResponseDTO inserirProduto(ProdutoInserirDTO dto) {
 		Produto produto = new Produto();
-		produto.setNmproduto(dto.getNmproduto());
+		produto.setNomeProduto(dto.getNomeProduto());
 		produto.setCusto(dto.getCusto());
-		produto.setPreco_unit(dto.getPreco_unit());
-		produto.setDescricao_prod(dto.getDescricao_prod());
-		produto.setQtd_estoque(dto.getQtd_estoque());
+		produto.setPrecoUnitario(dto.getPrecoUnitario());
+		produto.setDescricaoProduto(dto.getDescricaoProduto());
+		produto.setQuantidadeEstoque(dto.getQuantidadeEstoque());
 		produto.setCategoria(dto.getCategoria());
+		produto.setDataCadastro(LocalDate.now());
 		
-		produtoRepository.save(produto);
+		produtoRepository.saveAndFlush(produto);
 		return new ProdutoResponseDTO(produto);
 	}
 	
@@ -54,18 +56,24 @@ public class ProdutoService {
 	
 	public ProdutoResponseDTO editar(ProdutoInserirDTO produto, Long id) {
 		if(produtoRepository.existsById(id)) {
-			Produto prod = new Produto();
-			prod.setNmproduto(produto.getNmproduto());
-			produto.setCusto(produto.getCusto());
-			produto.setPreco_unit(produto.getPreco_unit());
-			produto.setDescricao_prod(produto.getDescricao_prod());
-			produto.setQtd_estoque(produto.getQtd_estoque());
-			produto.setCategoria(produto.getCategoria());
+			Optional<Produto> prod = produtoRepository.findById(id);
+			prod.get().setNomeProduto(produto.getNomeProduto());
+			prod.get().setCusto(produto.getCusto());
+			prod.get().setPrecoUnitario(produto.getPrecoUnitario());
+			prod.get().setDescricaoProduto(produto.getDescricaoProduto());
+			prod.get().setQuantidadeEstoque(produto.getQuantidadeEstoque());
+			prod.get().setCategoria(produto.getCategoria());
 			
-			return new ProdutoResponseDTO(prod);
+			produtoRepository.save(prod.get());
+			return new ProdutoResponseDTO(prod.get());
 		}
-		
 		return null;
+	}
+	
+	public void deletar(Long id) {
+		if (produtoRepository.existsById(id)) {
+			produtoRepository.deleteById(id);
+		}
 	}
 	
 }

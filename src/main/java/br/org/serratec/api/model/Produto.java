@@ -10,44 +10,33 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_produto")
-	private Long idproduto;
+	private Long idProduto;            
 	
-	@NotBlank(message = "nome vazio")  
-	@Size(max = 40)
-	@Column(name = "nmproduto", nullable = false)  
-	private String nmproduto;
+	@Column(name = "nome")  
+	private String nomeProduto;
 	
-	@NotBlank(message = "custo vazio")  
-	@Column(name = "custo", nullable = false) 
-	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
+	@Column(name = "custo") 
 	private BigDecimal custo;
 	
-	@NotBlank(message = "preço vazio")  
-	@Column(name = "preco_unit", nullable = false) 
-	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
-	private BigDecimal preco_unit;
+ 
+	@Column(name = "preco_unitario") 	
+	private BigDecimal precoUnitario;
 	 
-	@Size(max = 100)
-	@Column(name = "descricao_prod")  
-	private String descricao_prod;
+	@Column(name = "descricao")  
+	private String descricaoProduto;
 	
-	@NotBlank(message = "quantidade vazia")  
-	@Column(name = "qtd_estoque", nullable = false) 
-	@Min(1)
-	private Integer qtd_estoque;
+
+	@Column(name = "quantidade") 
+	private Integer quantidadeEstoque;
 	
-	@Column(name = "datacadastro", nullable = false)  
-	private LocalDate datacadastro;
+	@Column(name = "data_cadastro")  
+	private LocalDate dataCadastro;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_categoria")
@@ -57,37 +46,32 @@ public class Produto {
 	
 	public Produto() {}
 
-	public Produto(Long idproduto,
-			@NotBlank(message = "nome vazio") @Size(max = 40, message = "Preencha o nome!") String nmproduto,
-			@NotBlank(message = "custo vazio") BigDecimal custo,
-			@NotBlank(message = "preço vazio") BigDecimal preco_unit,
-			@Size(max = 100, message = "Preencha a descrição!") String descricao_prod,
-			@NotBlank(message = "quantidade vazia") Integer qtd_estoque, LocalDate datacadastro, Categoria categoria) {
-		this.idproduto = idproduto;
-		this.nmproduto = nmproduto;
+	/*public Produto(Long idProduto, String nomeProduto,BigDecimal custo, BigDecimal precoUnitario,
+			String descricaoProduto, Integer quantidadeEstoque, LocalDate dataCadastro, Categoria categoria) {
+		this.idProduto = idProduto;
+		this.nomeProduto = nomeProduto;
 		this.custo = custo;
-		this.preco_unit = preco_unit;
-		this.descricao_prod = descricao_prod;
-		this.qtd_estoque = qtd_estoque;
-		this.datacadastro = datacadastro;
+		this.precoUnitario = precoUnitario;
+		this.descricaoProduto = descricaoProduto;
+		this.quantidadeEstoque = quantidadeEstoque;
+		this.dataCadastro = LocalDate.now();
 		this.categoria = categoria;
+	}*/
+
+	public Long getIdProduto() {
+		return idProduto;
 	}
 
-
-	public Long getIdproduto() {
-		return idproduto;
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
-	public void setIdproduto(Long idproduto) {
-		this.idproduto = idproduto;
+	public String getNomeProduto() {
+		return nomeProduto;
 	}
 
-	public String getNmproduto() {
-		return nmproduto;
-	}
-
-	public void setNmproduto(String nmproduto) {
-		this.nmproduto = nmproduto;
+	public void setNomeProduto(String nomeProduto) {
+		this.nomeProduto = nomeProduto;
 	}
 
 	public BigDecimal getCusto() {
@@ -98,36 +82,36 @@ public class Produto {
 		this.custo = custo;
 	}
 
-	public BigDecimal getPreco_unit() {
-		return preco_unit;
+	public BigDecimal getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setPreco_unit(BigDecimal preco_unit) {
-		this.preco_unit = preco_unit;
+	public void setPrecoUnitario(BigDecimal precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public String getDescricao_prod() {
-		return descricao_prod;
+	public String getDescricaoProduto() {
+		return descricaoProduto;
 	}
 
-	public void setDescricao_prod(String descricao_prod) {
-		this.descricao_prod = descricao_prod;
+	public void setDescricaoProduto(String descricaoProduto) {
+		this.descricaoProduto = descricaoProduto;
 	}
 
-	public Integer getQtd_estoque() {
-		return qtd_estoque;
+	public Integer getQuantidadeEstoque() {
+		return quantidadeEstoque;
 	}
 
-	public void setQtd_estoque(Integer qtd_estoque) {
-		this.qtd_estoque = qtd_estoque;
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
-	public LocalDate getDatacadastro() {
-		return datacadastro;
+	public LocalDate getDataCadastro() {
+		return dataCadastro;
 	}
 
-	public void setDatacadastro(LocalDate datacadastro) {
-		this.datacadastro = datacadastro;
+	public void setDataCadastro(LocalDate dataCadastro) {
+		this.dataCadastro = dataCadastro;
 	}
 
 	public Categoria getCategoria() {
