@@ -1,6 +1,5 @@
 package br.org.serratec.api.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Column;

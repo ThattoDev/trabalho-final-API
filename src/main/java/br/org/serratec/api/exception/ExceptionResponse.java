@@ -1,27 +1,26 @@
 package br.org.serratec.api.exception;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
+import org.springframework.http.HttpStatus;
 
 public class ExceptionResponse {
-	private Integer status;
+	private HttpStatus status;
 	private String mensagem;
 	private LocalDateTime dataHora;
-	private List<String> erros;
 	
-	public ExceptionResponse(Integer status, String mensagem, LocalDateTime dataHora, List<String> erros) {
+	public ExceptionResponse(HttpStatus status, String mensagem, LocalDateTime dataHora) {
 		super();
 		this.status = status;
 		this.mensagem = mensagem;
 		this.dataHora = dataHora;
-		this.erros = erros;
 	}
 
-	public Integer getStatus() {
+	public HttpStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(HttpStatus status) {
 		this.status = status;
 	}
 
@@ -39,14 +38,6 @@ public class ExceptionResponse {
 
 	public void setDataHora(LocalDateTime dataHora) {
 		this.dataHora = dataHora;
-	}
-
-	public List<String> getErros() {
-		return erros;
-	}
-
-	public void setErros(List<String> erros) {
-		this.erros = erros;
 	}
 	
 }

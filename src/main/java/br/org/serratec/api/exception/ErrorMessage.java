@@ -9,6 +9,7 @@ public class ErrorMessage {
 	private LocalDate dtErro;
 	private String mensagem;
 	
+
 	public ErrorMessage(String titulo, String status, String mensagem) {
 		super();
 		this.titulo = titulo;

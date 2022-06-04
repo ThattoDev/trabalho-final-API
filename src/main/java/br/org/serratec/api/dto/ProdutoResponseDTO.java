@@ -1,7 +1,5 @@
 package br.org.serratec.api.dto;
 
-import java.io.Serializable;
-
 import java.time.LocalDate;
 
 import br.org.serratec.api.model.Categoria;
