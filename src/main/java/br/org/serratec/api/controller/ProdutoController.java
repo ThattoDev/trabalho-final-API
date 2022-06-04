@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.serratec.api.dto.ProdutoInserirDTO;
 import br.org.serratec.api.dto.ProdutoResponseDTO;
 import br.org.serratec.api.service.ProdutoService;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/api/produtos")
@@ -42,7 +43,7 @@ public class ProdutoController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<ProdutoResponseDTO> listarId(@PathVariable Long id) {
+	public ResponseEntity<ProdutoResponseDTO> listarId(@PathVariable Long id) throws NotFoundException {
 		Optional<ProdutoResponseDTO> produtoDTO = produtoService.listarPorId(id);
 		
 		if(produtoDTO != null) {
@@ -52,7 +53,7 @@ public class ProdutoController {
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> editar(@Valid @RequestBody ProdutoInserirDTO produtoDTO, @PathVariable Long id) {
+	public ResponseEntity<Object> editar(@Valid @RequestBody ProdutoInserirDTO produtoDTO, @PathVariable Long id) throws NotFoundException {
 		if(produtoService.editar(produtoDTO, id) != null) {
 			return ResponseEntity.ok(produtoDTO);
 		}
@@ -60,7 +61,7 @@ public class ProdutoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+	public ResponseEntity<Void> deletar(@PathVariable Long id) throws NotFoundException {
 		if(produtoService.listarPorId(id) != null) {
 			produtoService.deletar(id);
 			return ResponseEntity.ok().build();

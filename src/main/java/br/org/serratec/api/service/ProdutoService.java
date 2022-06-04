@@ -13,6 +13,7 @@ import br.org.serratec.api.dto.ProdutoInserirDTO;
 import br.org.serratec.api.dto.ProdutoResponseDTO;
 import br.org.serratec.api.model.Produto;
 import br.org.serratec.api.repository.ProdutoRepository;
+import javassist.NotFoundException;
 
 @Service
 public class ProdutoService {
@@ -44,17 +45,17 @@ public class ProdutoService {
 		return listProdutosDTO;
 	}
 	
-	public Optional<ProdutoResponseDTO> listarPorId(Long id) {
+	public Optional<ProdutoResponseDTO> listarPorId(Long id) throws NotFoundException {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		Optional<ProdutoResponseDTO> produtoDTO = Optional.ofNullable(new ProdutoResponseDTO(produto.get()));
 		
 		if (produto.isPresent()) {
 			return produtoDTO;
 		}
-		return null;
+		throw new NotFoundException("Id");
 	}
 	
-	public ProdutoResponseDTO editar(ProdutoInserirDTO produto, Long id) {
+	public ProdutoResponseDTO editar(ProdutoInserirDTO produto, Long id) throws NotFoundException {
 		if(produtoRepository.existsById(id)) {
 			Optional<Produto> prod = produtoRepository.findById(id);
 			prod.get().setNomeProduto(produto.getNomeProduto());
@@ -67,13 +68,14 @@ public class ProdutoService {
 			produtoRepository.save(prod.get());
 			return new ProdutoResponseDTO(prod.get());
 		}
-		return null;
+		throw new NotFoundException("Id");
 	}
 	
-	public void deletar(Long id) {
+	public void deletar(Long id) throws NotFoundException {
 		if (produtoRepository.existsById(id)) {
 			produtoRepository.deleteById(id);
 		}
+		throw new NotFoundException("Id");
 	}
 	
 }

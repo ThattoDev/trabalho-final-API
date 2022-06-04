@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import br.org.serratec.api.dto.CategoriaDTO;
 import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.repository.CategoriaRepository;
+import javassist.NotFoundException;
 
 @Service
 public class CategoriaService {
@@ -27,15 +28,15 @@ public class CategoriaService {
 		return categoriaRepository.findAll(); 
 	}
 	
-	public Categoria listarPorId(Long id) {
+	public Categoria listarPorId(Long id) throws NotFoundException {
 		Optional<Categoria> categoria = categoriaRepository.findById(id);
 		if(categoria.isPresent()) {
 			return categoria.get();
 		}
-		return null;
+		throw new NotFoundException("Id");
 	}
 	
-	public Categoria editar(CategoriaDTO categoriaDTO, Long id) {
+	public Categoria editar(CategoriaDTO categoriaDTO, Long id) throws NotFoundException {
 		if(categoriaRepository.existsById(id)) {
 			Optional<Categoria> categoria = categoriaRepository.findById(id);
 			categoria.get().setNomeCategoria(categoriaDTO.getNomeCategoria());
@@ -43,13 +44,14 @@ public class CategoriaService {
 			
 			return categoriaRepository.save(categoria.get());
 		}
-		return null;
+		throw new NotFoundException("Id");
 	}
 	
-	public void deletar(Long id) {
+	public void deletar(Long id) throws NotFoundException {
 		if(categoriaRepository.existsById(id)) {
 			categoriaRepository.deleteById(id);
 		}
+		throw new NotFoundException("Id");
 	}
 	
 }

@@ -1,7 +1,5 @@
 package br.org.serratec.api.dto;
 
-import java.io.Serializable;
-
 import br.org.serratec.api.model.PedidoItem;
 import br.org.serratec.api.model.Pedido;
 import br.org.serratec.api.model.Produto;

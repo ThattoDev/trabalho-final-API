@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.org.serratec.api.dto.CategoriaDTO;
 import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.service.CategoriaService;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/api/categorias")
@@ -40,7 +41,7 @@ public class CategoriaController {
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Categoria> listarPorId(@PathVariable Long id) {
+	public ResponseEntity<Categoria> listarPorId(@PathVariable Long id) throws NotFoundException {
 		Categoria categoria = categoriaService.listarPorId(id);
 		if(categoria != null) {
 			return ResponseEntity.ok(categoria);
@@ -49,7 +50,7 @@ public class CategoriaController {
 	}
 	
 	@PutMapping("/{id}") 
-	public ResponseEntity<Object> editar(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) {
+	public ResponseEntity<Object> editar(@Valid @RequestBody CategoriaDTO categoriaDTO, @PathVariable Long id) throws NotFoundException {
 		if(categoriaService.editar(categoriaDTO, id) != null) {
 			return ResponseEntity.ok(categoriaDTO);
 		}
@@ -57,7 +58,7 @@ public class CategoriaController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+	public ResponseEntity<Void> deletar(@PathVariable Long id) throws NotFoundException {
 		if(categoriaService.listarPorId(id) != null) {
 			categoriaService.deletar(id);
 			return ResponseEntity.ok().build();
