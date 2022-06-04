@@ -66,10 +66,10 @@ public class ClienteController {
 	@GetMapping("/cpf")
 	@ApiOperation(value = "Obter cliente por CPF", notes = "Busca de um cliente pelo nº do CPF")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna um cliente"),
-			@ApiResponse(code = 401, message = "Erro de autenticação"),
-			@ApiResponse(code = 403, message = "Recurso proibido"),
-			@ApiResponse(code = 404, message = "Recurso não encontrado"),
-			@ApiResponse(code = 500, message = "Erro de servidor") })
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Recurso proibido"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 500, message = "Erro de servidor") })
 	public ResponseEntity<ClienteDTO> obterPorCpf(@RequestParam(value = "cpf") String cpf) {
 		if (clienteService.buscarCpf(cpf) != null) {
 			return ResponseEntity.ok(clienteService.buscarCpf(cpf));
@@ -80,10 +80,10 @@ public class ClienteController {
 	@GetMapping("/email")
 	@ApiOperation(value = "Obter cliente por email", notes = "Busca de um cliente pelo email")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "Retorna um cliente"),
-			@ApiResponse(code = 401, message = "Erro de autenticação"),
-			@ApiResponse(code = 403, message = "Recurso proibido"),
-			@ApiResponse(code = 404, message = "Recurso não encontrado"),
-			@ApiResponse(code = 500, message = "Erro de servidor") })
+	@ApiResponse(code = 401, message = "Erro de autenticação"),
+	@ApiResponse(code = 403, message = "Recurso proibido"),
+	@ApiResponse(code = 404, message = "Recurso não encontrado"),
+	@ApiResponse(code = 500, message = "Erro de servidor") })
 	public ResponseEntity<ClienteDTO> obterPorEmail(@RequestParam(value = "email") String email) {
 		if (clienteService.buscarEmail(email) != null) {
 			return ResponseEntity.ok(clienteService.buscarEmail(email));

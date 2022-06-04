@@ -22,11 +22,11 @@ public class Produto {
 	private String nomeProduto;
 	
 	@Column(name = "custo") 
-	private BigDecimal custo;
+	private Double custo;
 	
  
 	@Column(name = "preco_unitario") 	
-	private BigDecimal precoUnitario;
+	private Double precoUnitario;
 	 
 	@Column(name = "descricao")  
 	private String descricaoProduto;
@@ -74,19 +74,19 @@ public class Produto {
 		this.nomeProduto = nomeProduto;
 	}
 
-	public BigDecimal getCusto() {
+	public Double getCusto() {
 		return custo;
 	}
 
-	public void setCusto(BigDecimal custo) {
+	public void setCusto(Double custo) {
 		this.custo = custo;
 	}
 
-	public BigDecimal getPrecoUnitario() {
+	public Double getPrecoUnitario() {
 		return precoUnitario;
 	}
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
+	public void setPrecoUnitario(Double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 

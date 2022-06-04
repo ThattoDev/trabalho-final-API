@@ -1,18 +1,18 @@
 package br.org.serratec.api.dto;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
+
 import java.time.LocalDate;
 
 import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.model.Produto;
 
-public class ProdutoResponseDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
+public class ProdutoResponseDTO {
+	
 	
 	private Long idProduto;
 	private String nomeProduto;	
-	private BigDecimal precoUnitario;
+	private Double precoUnitario;
 	private String descricaoProduto;
 	private Integer quantidadeEstoque;
 	private Categoria categoria;
@@ -46,11 +46,11 @@ public class ProdutoResponseDTO implements Serializable{
 		this.nomeProduto = nomeProduto;
 	}
 
-	public BigDecimal getPrecoUnitario() {
+	public Double getPrecoUnitario() {
 		return precoUnitario;
 	}
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
+	public void setPrecoUnitario(Double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 

@@ -51,8 +51,8 @@ public class PedidoItemService {
 		pedidoItem.setProduto(pedidoItemInserirDTO.getProduto());
 		pedidoItem.setQuantidade(pedidoItemInserirDTO.getQuantidade());
 		//PERGUNTAR SE TEM QUE FAZER UM INSTACIAMENTO DO PEDIDO AQUI
-		Optional<Produto> produto = produtoRepository.findById(pedidoItemInserirDTO.getProduto().getIdproduto());
-		pedidoItem.setPrecoVenda(produto.get().getPreco_unit());
+		Optional<Produto> produto = produtoRepository.findById(pedidoItemInserirDTO.getProduto().getIdProduto());
+		pedidoItem.setPrecoVenda(produto.get().getPrecoUnitario());
 		pedidoItem.setSubTotal(pedidoItem.getSubTotal());
 		pedidoItemRepository.saveAndFlush(pedidoItem);
 
@@ -66,7 +66,7 @@ public class PedidoItemService {
 			pedidoItem.setPedido(pedidoItemDTO.getPedido());
 			pedidoItem.setProduto(pedidoItemDTO.getProduto());
 			pedidoItem.setQuantidade(pedidoItemDTO.getQuantidade());
-			pedidoItem.setPrecoVenda(pedidoItemDTO.getProduto().getPreco_unit());
+			pedidoItem.setPrecoVenda(pedidoItemDTO.getProduto().getPrecoUnitario());
 			pedidoItem.setSubTotal(pedidoItem.getSubTotal());
 			pedidoItemRepository.saveAndFlush(pedidoItem);
 

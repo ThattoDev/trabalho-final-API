@@ -49,7 +49,7 @@ public class Pedido {
 	
 	@Transient
 	@Column(name = "valor_total")
-	private Float vlTotal;
+	private Double vlTotal;
 	
 	@Size
 	@NotBlank(message = "Preencha o status do pedido")
@@ -120,9 +120,9 @@ public class Pedido {
 		this.pedidoItem = pedidoItem;
 	}
 	
-	public Float getVlTotal() {
+	public Double getVlTotal() {
 		vlTotal = 0.0;
-		for (PedidoItem item : pedidosItem) {
+		for (PedidoItem item : pedidoItem) {
 			vlTotal += item.getSubTotal();
 		}
 		return vlTotal;

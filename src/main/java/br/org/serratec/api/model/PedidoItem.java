@@ -28,7 +28,7 @@ public class PedidoItem {
 	
 	@Column(name = "preco_venda")
 	@NotNull
-	private Float precoVenda;
+	private Double precoVenda;
 	
 	@JsonBackReference
 	@ManyToOne 
@@ -58,11 +58,11 @@ public class PedidoItem {
 		this.quantidade = quantidade;
 	}
 
-	public Float getPrecoVenda() {
+	public Double getPrecoVenda() {
 		return precoVenda;
 	}
 
-	public void setPrecoVenda(Float precoVenda) {
+	public void setPrecoVenda(Double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
 

@@ -7,5 +7,5 @@ import br.org.serratec.api.model.Categoria;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long>{
-	//public Categoria getByNome(String nome);
+	
 }

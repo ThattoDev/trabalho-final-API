@@ -1,7 +1,5 @@
 package br.org.serratec.api.dto;
 
-import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
@@ -12,8 +10,8 @@ import javax.validation.constraints.Size;
 import br.org.serratec.api.model.Categoria;
 import br.org.serratec.api.model.Produto;
 
-public class ProdutoInserirDTO implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ProdutoInserirDTO  {
+
 
 	@NotBlank(message = "nome vazio")  
 	@Size(max = 40)
@@ -21,11 +19,11 @@ public class ProdutoInserirDTO implements Serializable {
 	
 	@NotNull(message = "custo vazio")
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")
-	private BigDecimal custo;
+	private Double custo;
 	
 	@NotNull(message = "preço vazio")  
 	@DecimalMin(value = "1", message = "O valor do produto não pode ser menor que R${value}.0")	
-	private BigDecimal precoUnitario;
+	private Double precoUnitario;
 	
 	@Size(max = 100)
 	private String descricaoProduto;
@@ -57,19 +55,19 @@ public class ProdutoInserirDTO implements Serializable {
 		this.nomeProduto = nomeProduto;
 	}
 
-	public BigDecimal getCusto() {
+	public Double getCusto() {
 		return custo;
 	}
 
-	public void setCusto(BigDecimal custo) {
+	public void setCusto(Double custo) {
 		this.custo = custo;
 	}
 
-	public BigDecimal getPrecoUnitario() {
+	public Double getPrecoUnitario() {
 		return precoUnitario;
 	}
 
-	public void setPrecoUnitario(BigDecimal precoUnitario) {
+	public void setPrecoUnitario(Double precoUnitario) {
 		this.precoUnitario = precoUnitario;
 	}
 

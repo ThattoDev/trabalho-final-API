@@ -39,8 +39,9 @@ public class Endereco {
 	@Column(name = "uf", nullable = false)  
 	private String uf;
 	
-	
-
+	public Endereco() {
+		// TODO Auto-generated constructor stub
+	}
 
 	public Endereco( String cep,
 			@NotBlank(message = "rua vazia") @Size(max = 50, message = "Preencha a rua!") String logradouro,
@@ -70,12 +71,12 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public String getRua() {
+	public String getLogradouro() {
 		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.logradouro = rua;
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getBairro() {

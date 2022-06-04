@@ -7,7 +7,7 @@ public class PedidoItemDTO {
 
 	private Produto produto;
 	private Integer quantidade;
-	private Float precoVenda;
+	private Double precoVenda;
 	private Double subTotal;
 
 	public PedidoItemDTO() {
@@ -38,11 +38,11 @@ public class PedidoItemDTO {
 		this.quantidade = quantidade;
 	}
 
-	public Float getPrecoVenda() {
+	public Double getPrecoVenda() {
 		return precoVenda;
 	}
 
-	public void setPrecoVenda(Float precoVenda) {
+	public void setPrecoVenda(Double precoVenda) {
 		this.precoVenda = precoVenda;
 	}
 

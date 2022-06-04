@@ -55,7 +55,7 @@ public class EnderecoService {
 
 
 	public EnderecoDTO inserir(EnderecoInserirDTO enderecoDTO) {
-
+		
 		Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.findByCep(enderecoDTO.getCep()));
 		if (endereco.isPresent()) {
 			return new EnderecoDTO(endereco.get());
@@ -70,6 +70,7 @@ public class EnderecoService {
 
 				Endereco var = enderecoViaCep.get();
 				EnderecoDTO enderecoDto = new EnderecoDTO(var);
+				enderecoRepository.save(var);
 				return enderecoDto;
 			} else {
 				return null;
