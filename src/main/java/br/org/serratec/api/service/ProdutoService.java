@@ -47,10 +47,9 @@ public class ProdutoService {
 	
 	public Optional<ProdutoResponseDTO> listarPorId(Long id) throws NotFoundException {
 		Optional<Produto> produto = produtoRepository.findById(id);
-		Optional<ProdutoResponseDTO> produtoDTO = Optional.ofNullable(new ProdutoResponseDTO(produto.get()));
 		
 		if (produto.isPresent()) {
-			return produtoDTO;
+			return Optional.ofNullable(new ProdutoResponseDTO(produto.get()));
 		}
 		throw new NotFoundException("Id");
 	}
