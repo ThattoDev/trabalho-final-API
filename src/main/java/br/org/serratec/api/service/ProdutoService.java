@@ -49,7 +49,7 @@ public class ProdutoService {
 		Optional<Produto> produto = produtoRepository.findById(id);
 		
 		if (produto.isPresent()) {
-			return Optional.ofNullable(new ProdutoResponseDTO(produto.get()));
+			return Optional.of(new ProdutoResponseDTO(produto.get()));
 		}
 		throw new NotFoundException("Id");
 	}
