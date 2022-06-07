@@ -64,7 +64,7 @@ public class ProdutoController {
 	public ResponseEntity<Void> deletar(@PathVariable Long id) throws NotFoundException {
 		if(produtoService.listarPorId(id) != null) {
 			produtoService.deletar(id);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}
