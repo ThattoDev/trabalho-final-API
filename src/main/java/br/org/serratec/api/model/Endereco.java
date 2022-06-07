@@ -10,10 +10,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(schema = "")
 public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name ="idendereco")
 	private Long idendereco;
 	
 	@Column(name = "cep")  

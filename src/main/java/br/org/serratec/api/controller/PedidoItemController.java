@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import br.org.serratec.api.service.PedidoItemService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import javassist.NotFoundException;
 
 @RestController
 @RequestMapping("/projetofinal/pedidoitens")
@@ -50,7 +52,7 @@ public class PedidoItemController {
 			@ApiResponse(code = 403, message = "Recurso proibido"),
 			@ApiResponse(code = 404, message = "Recurso não encontrado"),
 			@ApiResponse(code = 500, message = "Erro de servidor") })
-	public ResponseEntity<PedidoItemDTO> buscarPorId(@PathVariable Long id) {
+	public ResponseEntity<PedidoItemDTO> buscarPorId(@PathVariable Long id) throws NotFoundException {
 		if (pedidoItemService.obterPorId(id) != null) {
 			return ResponseEntity.ok(pedidoItemService.obterPorId(id).get());
 		}
@@ -92,10 +94,10 @@ public class PedidoItemController {
 			@ApiResponse(code = 403, message = "Recurso proibido"),
 			@ApiResponse(code = 404, message = "Recurso não encontrado"),
 			@ApiResponse(code = 500, message = "Erro de servidor") })
-	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
+	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) throws NotFoundException {
 		if (pedidoItemService.obterPorId(id) != null) {
 			pedidoItemService.deletarPorId(id);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}

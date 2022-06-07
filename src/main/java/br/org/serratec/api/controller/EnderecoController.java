@@ -41,7 +41,7 @@ public class EnderecoController {
 	}
 	
 	@GetMapping("/{cep}")
-	public ResponseEntity<EnderecoDTO> buscarPorCep(@RequestParam(value = "cep") String cep) {
+	public ResponseEntity<EnderecoDTO> buscarPorCep(@PathVariable String cep) {
 		return ResponseEntity.ok(enderecoService.buscarPorCep(cep));
 	}
 	
@@ -49,7 +49,7 @@ public class EnderecoController {
 	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
 		if (enderecoService.buscarPorId(id) != null) {
 			enderecoService.deletarPorId(id);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}

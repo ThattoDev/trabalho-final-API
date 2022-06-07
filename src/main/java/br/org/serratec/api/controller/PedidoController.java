@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 //import br.com.senai.exception.EmailException;
 import br.org.serratec.api.dto.PedidoDTO;
 import br.org.serratec.api.service.PedidoService;
+import javassist.NotFoundException;
 import br.org.serratec.api.dto.PedidoInserirDTO;
 //import io.swagger.annotations.ApiOperation;
 //import io.swagger.annotations.ApiResponse;
@@ -41,7 +43,7 @@ public class PedidoController {
 		}
 		
 		@GetMapping("/{id}")
-		public ResponseEntity<PedidoDTO> buscarPorId(@PathVariable Long id) {
+		public ResponseEntity<PedidoDTO> buscarPorId(@PathVariable Long id) throws NotFoundException {
 			if (pedidoService.obterPorId(id) != null) {
 				return ResponseEntity.ok(pedidoService.obterPorId(id).get());
 			}
@@ -62,10 +64,10 @@ public class PedidoController {
 		}
 		
 		@DeleteMapping("{id}")
-		public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
+		public ResponseEntity<Void> deletarPorId(@PathVariable Long id) throws NotFoundException {
 			if (pedidoService.obterPorId(id) != null) {
 				pedidoService.deletarPorId(id);
-				return ResponseEntity.ok().build();
+				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 			}
 			return ResponseEntity.notFound().build();
 		}

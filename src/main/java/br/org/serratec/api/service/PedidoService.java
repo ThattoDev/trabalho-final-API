@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import br.org.serratec.api.dto.PedidoDTO;
 import br.org.serratec.api.model.Pedido;
 import br.org.serratec.api.repository.PedidoRepository;
+import javassist.NotFoundException;
 import br.org.serratec.api.dto.PedidoInserirDTO;
 
 
@@ -35,16 +36,16 @@ public class PedidoService {
 		return pedidos.stream().map(p-> new PedidoDTO(p)).collect(Collectors.toList());
 	}
 	
-	public Optional<PedidoDTO> obterPorId(Long id) {
+	public Optional<PedidoDTO> obterPorId(Long id) throws NotFoundException {
 
-		Optional<Pedido> pedido = pedidoRepository.findById(id);
-		Optional<PedidoDTO> pedidoDTO = Optional.ofNullable(new PedidoDTO(pedido.get()));
+        Optional<Pedido> pedido = pedidoRepository.findById(id);
 
-		if (pedido.isPresent()) {
-			return pedidoDTO;
-		}
-		return null;
-	}
+        if (pedido.isPresent()) {
+
+            return Optional.ofNullable(new PedidoDTO(pedido.get()));
+        }
+        throw new NotFoundException("id");
+    }
 	
 	public PedidoDTO inserir(PedidoInserirDTO pedidos) {		
 		Pedido pedido = new Pedido();

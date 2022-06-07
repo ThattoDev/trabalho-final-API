@@ -20,7 +20,7 @@ public class ClienteInserirDTO {
 	
 	
 	public ClienteInserirDTO(Cliente cliente) {
-		super();
+		
 		this.nome = cliente.getNome();
 		this.cpf = cliente.getCpf();
 		this.telefone = cliente.getTelefone();

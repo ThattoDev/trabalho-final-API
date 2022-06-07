@@ -12,6 +12,7 @@ import br.org.serratec.api.model.PedidoItem;
 import br.org.serratec.api.model.Produto;
 import br.org.serratec.api.repository.PedidoItemRepository;
 import br.org.serratec.api.repository.ProdutoRepository;
+import javassist.NotFoundException;
 
 @Service
 public class PedidoItemService {
@@ -33,18 +34,18 @@ public class PedidoItemService {
 		return itemPedidosDto;
 	}
 	
-	public Optional<PedidoItemDTO> obterPorId(Long id) {
-		
-		//RETIREI O OPTIONALDO DTO, AVALIAR SE É CERTO
-		Optional<PedidoItem> itemPedido = pedidoItemRepository.findById(id);
-		Optional<PedidoItemDTO> itemPedidoDto = Optional.ofNullable(new PedidoItemDTO(itemPedido.get()));
+	public Optional<PedidoItemDTO> obterPorId(Long id) throws NotFoundException {
 
-		if (itemPedido.isPresent()) {
-			return itemPedidoDto;
-		}
-		return null;
-	}
+        //RETIREI O OPTIONALDO DTO, AVALIAR SE É CERTO
+        Optional<PedidoItem> itemPedido = pedidoItemRepository.findById(id);
 
+
+        if (itemPedido.isPresent()) {
+
+            return Optional.ofNullable(new PedidoItemDTO(itemPedido.get()));
+        }
+        throw new NotFoundException("id");
+    }
 	public PedidoItemDTO inserir(PedidoItemInserirDTO pedidoItemInserirDTO) {
 		PedidoItem pedidoItem = new PedidoItem();
 		pedidoItem.setPedido(pedidoItemInserirDTO.getPedido());

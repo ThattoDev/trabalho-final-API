@@ -8,6 +8,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -142,7 +143,7 @@ public class ClienteController {
 	public ResponseEntity<Void> deletarPorCpf(@RequestParam(value = "cpf") String cpf) {
 		if (clienteService.buscarCpf(cpf) != null) {
 			clienteService.deletarPorCpf(cpf);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -157,7 +158,7 @@ public class ClienteController {
 	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) {
 		if (clienteService.buscarId(id) != null) {
 			clienteService.deletarPorId(id);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}
