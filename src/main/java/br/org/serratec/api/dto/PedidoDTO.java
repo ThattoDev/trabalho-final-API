@@ -1,13 +1,11 @@
 package br.org.serratec.api.dto;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import br.org.serratec.api.model.Cliente;
 import br.org.serratec.api.model.Pedido;
-import br.org.serratec.api.dto.PedidoItemDTO;
 
 public class PedidoDTO {
 	private Long id;

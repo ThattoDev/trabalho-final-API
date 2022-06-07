@@ -1,10 +1,6 @@
 package br.org.serratec.api.dto;
 
-import java.util.List;
-
 import br.org.serratec.api.model.Cliente;
-import br.org.serratec.api.model.Endereco;
-
 
 public class ClienteInserirDTO {
 	

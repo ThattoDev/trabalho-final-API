@@ -1,6 +1,5 @@
 package br.org.serratec.api.model;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -20,9 +18,6 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import br.org.serratec.api.model.Cliente;
-import br.org.serratec.api.model.PedidoItem;
 
 @Entity
 public class Pedido {
@@ -63,6 +58,20 @@ public class Pedido {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "pedido")
 	private List<PedidoItem> pedidoItem;
+	
+	public Pedido() {	}
+
+	public Pedido(Long id, LocalDate dtEmissao, LocalDate dtEntrega, LocalDate dtEnvio, Double vlTotal, String status, Cliente cliente, List<PedidoItem> pedidoItem) {
+		super();
+		this.id = id;
+		this.dtEmissao = dtEmissao;
+		this.dtEntrega = dtEntrega;
+		this.dtEnvio = dtEnvio;
+		this.vlTotal = vlTotal;
+		this.status = status;
+		this.cliente = cliente;
+		this.pedidoItem = pedidoItem;
+	}
 
 	public Long getId() {
 		return id;
