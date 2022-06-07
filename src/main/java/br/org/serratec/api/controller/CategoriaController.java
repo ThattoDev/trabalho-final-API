@@ -61,7 +61,7 @@ public class CategoriaController {
 	public ResponseEntity<Void> deletar(@PathVariable Long id) throws NotFoundException {
 		if(categoriaService.listarPorId(id) != null) {
 			categoriaService.deletar(id);
-			return ResponseEntity.ok().build();
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		return ResponseEntity.notFound().build();
 	}
