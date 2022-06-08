@@ -18,6 +18,7 @@ import br.org.serratec.api.dto.ClienteDTO;
 import br.org.serratec.api.model.Cliente;
 import br.org.serratec.api.model.Endereco;
 import br.org.serratec.api.repository.ClienteRepository;
+import javassist.NotFoundException;
 import br.org.serratec.api.dto.EnderecoDTO;
 import br.org.serratec.api.exception.CpfException;
 import br.org.serratec.api.exception.EmailException;
@@ -53,13 +54,13 @@ public class ClienteService {
         return clientes.stream().map(p-> new ClienteDTO(p)).collect(Collectors.toList());
     }
 	//RETIREI O OPTIONAL DO CLIENTE DTO, PERGUUNTAR SE É CORRETO
-	public ClienteDTO buscarId(Long id) {
+	public ClienteDTO buscarId(Long id) throws NotFoundException {
 		Optional<Cliente> cliente = clienteRepository.findById(id);
 		ClienteDTO clienteDTO = new ClienteDTO(cliente.get());
 		if(cliente.isPresent()) {
 			return clienteDTO;
 		}else {
-			return null;
+			throw new NotFoundException("id");
 		}	
 	}
 	//RETIREI O OPTIONAL DO CLIENTE DTO, PERGUUNTAR SE É CORRETO
@@ -82,38 +83,41 @@ public class ClienteService {
 			return null;
 		}
 	}
-	public ClienteDTO inserir(ClienteInserirDTO clienteInserirDto) 	throws EmailException, CpfException, UsernameException, IOException {
-		
+	public ClienteDTO inserir(ClienteInserirDTO clienteInserirDto) 	
+			throws EmailException, CpfException, UsernameException, IOException {
+
 		if (clienteRepository.findByEmail(clienteInserirDto.getEmail()).isPresent()) {
 			throw new EmailException("Email já cadastrado! Escolha outro.");
-		} else if (clienteRepository.findByCpf(clienteInserirDto.getCpf()) != null) {
-			throw new CpfException("Este CPF já se encontra cadastrado!");
-		} else if (clienteRepository.findByUsuario(clienteInserirDto.getUsuario()) != null) {
-			throw new UsernameException("O username informado já está em uso! Escolha outro.");
-		}
-		
-		Cliente cliente = new Cliente();
-		cliente.setNome(clienteInserirDto.getNome());
-		cliente.setCpf(clienteInserirDto.getCpf());
-		cliente.setTelefone(clienteInserirDto.getTelefone());
-		cliente.setUsuario(clienteInserirDto.getUsuario());
-		cliente.setEmail(clienteInserirDto.getEmail());
-		cliente.setSenha(cripto.encode(clienteInserirDto.getSenha()));
-		cliente.setNrendereco(clienteInserirDto.getNrendereco());
-		cliente.setComplemento(clienteInserirDto.getComplemento());
-	
+		} if (clienteRepository.findByCpf(clienteInserirDto.getCpf()).isPresent()) {
+				throw new CpfException("CPF já cadastrado! Escolha outro");
+		  } if (Optional.ofNullable(clienteRepository.findByUsuario(clienteInserirDto.getUsuario())).isPresent()) {
+			  		throw new UsernameException("O username informado já está em uso! Escolha outro."); 
+		    } 
+		  
+		 Cliente cliente = new Cliente();
+			cliente.setNome(clienteInserirDto.getNome());
+			cliente.setCpf(clienteInserirDto.getCpf());
+			cliente.setTelefone(clienteInserirDto.getTelefone());
+			cliente.setUsuario(clienteInserirDto.getUsuario());
+			cliente.setEmail(clienteInserirDto.getEmail());
+			cliente.setSenha(cripto.encode(clienteInserirDto.getSenha()));
+			cliente.setNrendereco(clienteInserirDto.getNrendereco());
+			cliente.setComplemento(clienteInserirDto.getComplemento());
+		  
 		EnderecoDTO var = enderecoService.inserir(clienteInserirDto.getEndereco());
 		Endereco endereco = new Endereco(var.getCep(), var.getLogradouro(), var.getBairro(), var.getLocalidade(),var.getUf());
-
 		cliente.setEndereco(endereco);
+		
 		clienteRepository.save(cliente);
 		
 		mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Cadastro confirmado!", cliente.toString());
 		
 		return new ClienteDTO(cliente);
 	}
+		
+		
 	
-	public ClienteDTO atualizarPorId(Long id, ClienteInserirDTO clienteInserirDto) throws IOException {
+	public ClienteDTO atualizarPorId(Long id, ClienteInserirDTO clienteInserirDto) throws IOException, NotFoundException {
 		if (clienteRepository.existsById(id)) {
 
 			Cliente cliente = new Cliente();
@@ -138,7 +142,7 @@ public class ClienteService {
 			mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Alterações na conta!", cliente.toString());
 			return new ClienteDTO(cliente);
 		}
-		return null;
+		throw new NotFoundException("id");
 	}
 	
 	public void deletarPorCpf(String cpf) {
@@ -147,10 +151,11 @@ public class ClienteService {
 		}
 	}
 
-	public void deletarPorId(long id) {
+	public void deletarPorId(long id) throws NotFoundException {
 		if (clienteRepository.existsById(id)) {
 			clienteRepository.deleteById(id);
 		}
+		throw new NotFoundException("id");
 	}
 	
 }

@@ -60,7 +60,7 @@ public class PedidoItemService {
 		return new PedidoItemDTO(pedidoItem);
 	}
 
-	public PedidoItemDTO atualizarPorId(Long id, PedidoItemInserirDTO pedidoItemDTO) {
+	public PedidoItemDTO atualizarPorId(Long id, PedidoItemInserirDTO pedidoItemDTO) throws NotFoundException {
 		if (pedidoItemRepository.existsById(id)) {
 			PedidoItem pedidoItem = new PedidoItem();
 			pedidoItem.setId(id);
@@ -73,12 +73,13 @@ public class PedidoItemService {
 
 			return new PedidoItemDTO(pedidoItem);
 		}
-		return null;
+		throw new NotFoundException("id");
 	}
 
-	public void deletarPorId(Long id) {
+	public void deletarPorId(Long id) throws NotFoundException {
 		if (pedidoItemRepository.existsById(id)) {
 			pedidoItemRepository.deleteById(id);
 		}
+		throw new NotFoundException("id");
 	}
 }

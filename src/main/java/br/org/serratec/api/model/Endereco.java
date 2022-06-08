@@ -20,22 +20,22 @@ public class Endereco {
 	private String cep;
 	
 	@NotBlank(message = "rua vazia")  
-	@Size(max = 50, message = "Preencha a rua!")
+//	@Size(max = 50, message = "Preencha a rua!")
 	@Column(name = "rua", nullable = false)  
 	private String logradouro;
 	
 	@NotBlank(message = "bairro vazio")  
-	@Size(max = 50, message = "Preencha o bairro!")
+//	@Size(max = 50, message = "Preencha o bairro!")
 	@Column(name = "bairro", nullable = false)  
 	private String bairro;
 	
 	@NotBlank(message = "cidade vazio")  
-	@Size(max = 50, message = "Preencha a cidade!")
+//	@Size(max = 50, message = "Preencha a cidade!")
 	@Column(name = "localidade", nullable = false)  
 	private String localidade;
 	
 	@NotBlank(message = "uf vazia")  
-	@Size(max = 5, message = "Preencha a uf!")
+	//@Size(max = 5, message = "Preencha a uf!")
 	@Column(name = "uf", nullable = false)  
 	private String uf;
 	
@@ -43,11 +43,7 @@ public class Endereco {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Endereco( String cep,
-			@NotBlank(message = "rua vazia") @Size(max = 50, message = "Preencha a rua!") String logradouro,
-			@NotBlank(message = "bairro vazio") @Size(max = 50, message = "Preencha o bairro!") String bairro,
-			@NotBlank(message = "cidade vazio") @Size(max = 50, message = "Preencha a cidade!") String localidade,
-			@NotBlank(message = "uf vazia") @Size(max = 5, message = "Preencha a uf!") String uf) {
+	public Endereco( String cep, String logradouro, String bairro, String localidade, String uf) {
 		this.cep = cep;
 		this.logradouro = logradouro;
 		this.bairro = bairro;
