@@ -84,13 +84,13 @@ public class ClienteService {
 	}
 	public ClienteDTO inserir(ClienteInserirDTO clienteInserirDto) 	throws EmailException, CpfException, UsernameException, IOException {
 		
-		/*if (clienteRepository.findByEmail(clienteInserirDto.getEmail()) != null) {
+		if (clienteRepository.findByEmail(clienteInserirDto.getEmail()).isPresent()) {
 			throw new EmailException("Email já cadastrado! Escolha outro.");
 		} else if (clienteRepository.findByCpf(clienteInserirDto.getCpf()) != null) {
 			throw new CpfException("Este CPF já se encontra cadastrado!");
 		} else if (clienteRepository.findByUsuario(clienteInserirDto.getUsuario()) != null) {
 			throw new UsernameException("O username informado já está em uso! Escolha outro.");
-		}*/
+		}
 		
 		Cliente cliente = new Cliente();
 		System.out.println("novo cliente");

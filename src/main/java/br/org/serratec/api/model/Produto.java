@@ -17,24 +17,24 @@ public class Produto {
 	@Column(name = "id_produto")
 	private Long idProduto;            
 	
-	@Column(name = "nome")  
+	@Column(name = "nome", nullable = false)  
 	private String nomeProduto;
 	
-	@Column(name = "custo") 
+	@Column(name = "custo", nullable = false) 
 	private Double custo;
 	
  
-	@Column(name = "preco_unitario") 	
+	@Column(name = "preco_unitario", nullable = false) 	
 	private Double precoUnitario;
 	 
 	@Column(name = "descricao")  
 	private String descricaoProduto;
 	
 
-	@Column(name = "quantidade") 
+	@Column(name = "quantidade", nullable = false) 
 	private Integer quantidadeEstoque;
 	
-	@Column(name = "data_cadastro")  
+	@Column(name = "data_cadastro", nullable = false)  
 	private LocalDate dataCadastro;
 	
 	@ManyToOne
