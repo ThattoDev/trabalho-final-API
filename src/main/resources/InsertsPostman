@@ -1,5 +1,6 @@
 
-OBS: precisa inserir 1 produto e 1 categoria por vez
+OBS1: Precisa inserir 1 produto e 1 categoria por vez.
+OBS2: Inserir primeiro uma categoria antes de tudo ( cada produto precisa ter uma categoria )
 
 ---------------------CATEGORIA------------------------
 {

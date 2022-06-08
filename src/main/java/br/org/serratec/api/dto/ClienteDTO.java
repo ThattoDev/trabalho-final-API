@@ -16,7 +16,6 @@ public class ClienteDTO {
 	private String email;
 	private String nrendereco;
 	private String complemento;
-	private String url;
 	private Endereco endereco;
 	private List<Pedido> pedidos;
 	
@@ -29,7 +28,6 @@ public class ClienteDTO {
 		this.email = cliente.getEmail();
 		this.nrendereco = cliente.getNrendereco();
 		this.complemento = cliente.getComplemento();
-		this.url = cliente.getUrl();
 		this.endereco = cliente.getEndereco();
 		this.pedidos = cliente.getPedidos();
 	}
@@ -104,14 +102,6 @@ public class ClienteDTO {
 		this.complemento = complemento;
 	}
 	
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
 
 	public Endereco getEndereco() {
 		return endereco;

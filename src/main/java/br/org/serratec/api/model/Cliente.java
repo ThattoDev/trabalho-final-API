@@ -58,7 +58,6 @@ public class Cliente {
 	@Column(name = "complemento", nullable = false)
 	private String complemento;
 
-	private String url;
 	
 	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_endereco")
@@ -142,13 +141,6 @@ public class Cliente {
 	}
 	
 
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
-	}
 
 	public Endereco getEndereco() {
 		return endereco;
