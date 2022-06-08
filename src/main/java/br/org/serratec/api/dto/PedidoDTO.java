@@ -79,6 +79,23 @@ public class PedidoDTO {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<PedidoItemDTO> getPedidoItem() {
+		return pedidoItem;
+	}
+
+	public void setPedidoItem(List<PedidoItemDTO> pedidoItem) {
+		this.pedidoItem = pedidoItem;
+	}
+	
 	
 	
 	
