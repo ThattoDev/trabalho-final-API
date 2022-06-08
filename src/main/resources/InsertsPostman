@@ -36,4 +36,29 @@ OBS: precisa inserir 1 produto e 1 categoria por vez
         "idCategoria": 2
     }
 }
+----------------CLIENTE---------------
 
+{
+    "nome":"ivan filho",
+    "cpf": "11111",
+    "telefone": "22222",
+    "usuario":"ivanf",
+    "email": "ivanf@email",
+    "senha":"1234",
+    "nrendereco":"111",
+    "complemento":"rua de cima",
+    "endereco":{
+        "cep":"28613360"
+    }
+
+
+
+}
+
+-------------ENDEREÇO--------------
+
+{
+    "cep":"25955100"
+}
+
+------

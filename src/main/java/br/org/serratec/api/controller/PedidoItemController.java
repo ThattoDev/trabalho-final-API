@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiResponses;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/projetofinal/pedidoitens")
+@RequestMapping("/api/pedidoitens")
 public class PedidoItemController {
 
 	@Autowired

@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Cliente {
@@ -47,7 +49,7 @@ public class Cliente {
 	private String email;
 	
 	@NotBlank(message = "campo senha vazio")  
-	@Size(max = 20, message = "Preencha a senha!")
+	@Size(max = 200, message = "Preencha a senha!")
 	@Column(name = "senha", nullable = false)
 	private String senha;
 	
@@ -55,7 +57,7 @@ public class Cliente {
 	private String nrendereco;
 	@Column(name = "complemento", nullable = false)
 	private String complemento;
-	@Column(name = "url", nullable = false)
+
 	private String url;
 	
 	@OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
@@ -63,6 +65,7 @@ public class Cliente {
 	private Endereco endereco;
 	
 	@OneToMany(mappedBy = "cliente")
+	@JsonIgnore
 	private List<Pedido> pedidos;
 	
 

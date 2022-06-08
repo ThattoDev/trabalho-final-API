@@ -93,7 +93,6 @@ public class ClienteService {
 		}*/
 		
 		Cliente cliente = new Cliente();
-		System.out.println("novo cliente");
 		cliente.setNome(clienteInserirDto.getNome());
 		cliente.setCpf(clienteInserirDto.getCpf());
 		cliente.setTelefone(clienteInserirDto.getTelefone());
@@ -102,20 +101,13 @@ public class ClienteService {
 		cliente.setSenha(cripto.encode(clienteInserirDto.getSenha()));
 		cliente.setNrendereco(clienteInserirDto.getNrendereco());
 		cliente.setComplemento(clienteInserirDto.getComplemento());
-		System.out.println("dados adicionados sem o endereco");
-		
-		
+	
 		EnderecoDTO var = enderecoService.inserir(clienteInserirDto.getEndereco());
 		Endereco endereco = new Endereco(var.getCep(), var.getLogradouro(), var.getBairro(), var.getLocalidade(),var.getUf());
-		System.out.println(endereco.getIdendereco());
-		//clienteInserirDto.setEndereco(endereco);
-		cliente.setEndereco(endereco);
-		System.out.println(cliente.getEndereco().getIdendereco() +cliente.getEndereco().getBairro()+ cliente.getEndereco().getCep()+ cliente.getEndereco().getLogradouro());
-		System.out.println("set endereco no cliente");
 
+		cliente.setEndereco(endereco);
 		clienteRepository.save(cliente);
 		
-		System.out.println("cliente salvo");
 		mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Cadastro confirmado!", cliente.toString());
 		
 		return new ClienteDTO(cliente);

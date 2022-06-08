@@ -30,7 +30,7 @@ import br.org.serratec.api.dto.PedidoInserirDTO;
 //import io.swagger.annotations.ApiResponses;
 
 @RestController
-@RequestMapping("/pedidos")
+@RequestMapping("/api/pedidos")
 public class PedidoController {
 	
 		@Autowired
@@ -50,7 +50,7 @@ public class PedidoController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		@PostMapping
+		@PostMapping("/adicionar")
 		public ResponseEntity<Object> inserir(@Valid @RequestBody PedidoInserirDTO pedido) {
 			return ResponseEntity.ok(pedidoService.inserir(pedido));
 		}

@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -52,11 +53,12 @@ public class Pedido {
 	private String status;
 	
 	@OneToOne
+	@JsonIgnore
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido" )
 	private List<PedidoItem> pedidoItem;
 	
 	public Pedido() {	}

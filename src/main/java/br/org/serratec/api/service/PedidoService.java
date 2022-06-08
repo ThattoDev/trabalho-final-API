@@ -55,7 +55,7 @@ public class PedidoService {
 		pedido.setStatus("Status: em andamento");
 		pedido.setCliente(pedidos.getCliente());
 
-		pedidoRepository.saveAndFlush(pedido);
+		pedidoRepository.save(pedido);
 		return new PedidoDTO(pedido);
 	}
 	
