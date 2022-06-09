@@ -92,7 +92,7 @@ public class ClienteService {
 				throw new CpfException("CPF já cadastrado! Escolha outro");
 		  } if (Optional.ofNullable(clienteRepository.findByUsuario(clienteInserirDto.getUsuario())).isPresent()) {
 			  		throw new UsernameException("O username informado já está em uso! Escolha outro."); 
-		    } 
+		    }
 		  
 		 Cliente cliente = new Cliente();
 			cliente.setNome(clienteInserirDto.getNome());
@@ -151,7 +151,7 @@ public class ClienteService {
 		}
 	}
 
-	public void deletarPorId(long id) throws NotFoundException {
+	public void deletarPorId(long id) throws NotFoundException  {
 		if (clienteRepository.existsById(id)) {
 			clienteRepository.deleteById(id);
 		}

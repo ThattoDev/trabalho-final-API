@@ -113,8 +113,6 @@ public class ClienteController {
 			return ResponseEntity.created(uri).body(clienteDto); 
 		} catch (EmailException | UsernameException | CpfException | IOException e) {
 			return ResponseEntity.unprocessableEntity().body(e.getMessage());
-		
-	
 		}
 	}
 	
@@ -162,7 +160,7 @@ public class ClienteController {
 		@ApiResponse(code = 403, message = "Recurso proibido"),
 		@ApiResponse(code = 404, message = "Recurso não encontrado"),
 		@ApiResponse(code = 500, message = "Erro de servidor") })
-	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) throws NotFoundException {
+	public ResponseEntity<Void> deletarPorId(@PathVariable Long id) throws NotFoundException  {
 		if (clienteService.buscarId(id) != null) {
 			clienteService.deletarPorId(id);
 			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
