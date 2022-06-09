@@ -3,6 +3,7 @@ package br.org.serratec.api.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -58,7 +59,7 @@ public class Pedido {
 	private Cliente cliente;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "pedido" )
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "pedido" )
 	private List<PedidoItem> pedidoItem;
 	
 	public Pedido() {	}

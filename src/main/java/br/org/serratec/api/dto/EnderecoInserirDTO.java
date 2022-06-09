@@ -8,7 +8,7 @@ import br.org.serratec.api.model.Endereco;
 public class EnderecoInserirDTO {
 
 	@NotBlank
-	@Size(max = 9)
+//	@Size(max = 9)
 	private String cep;
 
 	public EnderecoInserirDTO() {

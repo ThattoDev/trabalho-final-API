@@ -19,4 +19,5 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler{
 				LocalDateTime.now());
 		return new ResponseEntity(erro, HttpStatus.NOT_FOUND);
 	}
+	
 }

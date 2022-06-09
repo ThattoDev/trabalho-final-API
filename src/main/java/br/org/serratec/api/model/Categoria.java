@@ -13,7 +13,7 @@ public class Categoria {
 	@Column(name = "id_categoria")
 	private Long idCategoria;
 	
-	@Column(name = "nome")  
+	@Column(name = "nome", nullable = false)  
 	private String nomeCategoria;
 	
 	@Column(name = "descricao")  

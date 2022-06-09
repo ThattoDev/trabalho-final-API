@@ -62,4 +62,24 @@ OBS2: Inserir primeiro uma categoria antes de tudo ( cada produto precisa ter um
     "cep":"25955100"
 }
 
-------
+--------------PEDIDO---------------
+{
+    "cliente":{
+        "id":1
+    }
+}
+
+----------PEDIDO_ITEM---------------
+
+{
+    "pedido":{
+        "id":1
+    },
+    "produto":{
+        "idProduto":1
+    },
+    "quantidade":3
+
+
+}
+

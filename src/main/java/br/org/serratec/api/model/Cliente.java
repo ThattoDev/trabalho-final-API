@@ -27,12 +27,12 @@ public class Cliente {
 	private Long id;
 	
 	@NotBlank(message = "campo nome vazio")  
-	@Size(max = 80, message = "Preencha o nome!")
+//	@Size(max = 80, message = "Preencha o nome!")
 	@Column(name = "nome", nullable = false)  
 	private String nome;
 	
 	@NotBlank(message = "campo cpf vazio")  
-	@Size(max = 20, message = "Preencha o cpf!")
+//	@Size(max = 20, message = "Preencha o cpf!")
 	@Column(name = "cpf", nullable = false)  
 	private String cpf;
 	
@@ -40,17 +40,17 @@ public class Cliente {
 	private String telefone;
 	
 	@NotBlank(message = "campo usuario vazio")  
-	@Size(max = 20, message = "Preencha o usuario!")
+//	@Size(max = 20, message = "Preencha o usuario!")
 	@Column(name = "usuario", nullable = false)
 	private String usuario;
 	
 	@NotBlank(message = "campo email vazio")  
-	@Size(max = 20, message = "Preencha o email!")
+//	@Size(max = 20, message = "Preencha o email!")
 	@Column(name = "email", nullable = false)
 	private String email;
 	
 	@NotBlank(message = "campo senha vazio")  
-	@Size(max = 200, message = "Preencha a senha!")
+//	@Size(max = 200, message = "Preencha a senha!")
 	@Column(name = "senha", nullable = false)
 	private String senha;
 	
@@ -59,7 +59,6 @@ public class Cliente {
 	@Column(name = "complemento", nullable = false)
 	private String complemento;
 
-	
 	@ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
@@ -68,6 +67,9 @@ public class Cliente {
 	@JsonIgnore
 	private List<Pedido> pedidos;
 	
+	
+	public Cliente() {
+	}
 
 	public Long getId() {
 		return id;
@@ -158,9 +160,5 @@ public class Cliente {
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
 	}
-	
-	
-	
-	
 	
 }

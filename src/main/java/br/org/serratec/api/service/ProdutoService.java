@@ -30,7 +30,7 @@ public class ProdutoService {
 		produto.setCategoria(dto.getCategoria());
 		produto.setDataCadastro(LocalDate.now());
 		
-		produtoRepository.saveAndFlush(produto);
+		produtoRepository.save(produto);
 		return new ProdutoResponseDTO(produto);
 	}
 	
