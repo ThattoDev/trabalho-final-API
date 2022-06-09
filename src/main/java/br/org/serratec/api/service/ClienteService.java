@@ -108,7 +108,7 @@ public class ClienteService {
 		cliente.setEndereco(endereco);
 		clienteRepository.save(cliente);
 		
-		mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Cadastro confirmado!", cliente.toString());
+		//mailConfig.enviarEmail(cliente.getEmail(), "API Rest: Cadastro confirmado!", cliente.toString());
 		
 		return new ClienteDTO(cliente);
 	}
@@ -127,9 +127,10 @@ public class ClienteService {
 			cliente.setComplemento(clienteInserirDto.getComplemento());
 			
 			EnderecoDTO var = enderecoService.inserir(clienteInserirDto.getEndereco());
+			System.out.println("endereco inserir dto   "+clienteInserirDto.getEndereco());
 			Endereco endereco = new Endereco(var.getCep(), var.getLogradouro(), var.getBairro(), var.getLocalidade(),
 					var.getUf());
-			
+			System.out.println("endereco inserir dto   "+endereco.getCep());
 			//clienteInserirDto.setEndereco(endereco);
 			cliente.setEndereco(endereco);
 			

@@ -7,4 +7,5 @@ import br.org.serratec.api.model.Endereco;
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> { 
 	
 	public Endereco findByCep(String cep);
+	
 }

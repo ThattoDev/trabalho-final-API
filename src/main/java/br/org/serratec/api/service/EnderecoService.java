@@ -55,22 +55,27 @@ public class EnderecoService {
 
 
 	public EnderecoDTO inserir(EnderecoInserirDTO enderecoDTO) {
-		
+		System.out.println(enderecoDTO.getCep());
+		System.out.println("endereco da tabela1   "+enderecoRepository.findByCep(enderecoDTO.getCep()));
 		Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.findByCep(enderecoDTO.getCep()));
+		System.out.println("endereco da tabela2   ");
 		if (endereco.isPresent()) {
+			System.out.println("endereco da tabela3   "+endereco.get());
 			return new EnderecoDTO(endereco.get());
 		} else {
 			RestTemplate restTemplate = new RestTemplate();
 			String uriViaCep = "https://viacep.com.br/ws/" + enderecoDTO.getCep() + "/json/";
 			Optional<Endereco> enderecoViaCep = Optional
 					.ofNullable(restTemplate.getForObject(uriViaCep, Endereco.class));
+			System.out.println("endereco da tabela4   "+enderecoViaCep.get());
 			if (enderecoViaCep.get().getCep() != null) {
 				String cepSemTraco = enderecoViaCep.get().getCep().replaceAll("-", "");
 				enderecoViaCep.get().setCep(cepSemTraco);
 
 				Endereco var = enderecoViaCep.get();
 				EnderecoDTO enderecoDto = new EnderecoDTO(var);
-				enderecoRepository.save(var);
+				System.out.println("endereco da tabela5   "+enderecoDto.getCep());
+				//enderecoRepository.save(var);
 				return enderecoDto;
 			} else {
 				return null;
@@ -79,7 +84,7 @@ public class EnderecoService {
 
 	}
 	
-	public EnderecoDTO inserirDeFato(EnderecoInserirDTO enderec) {
+	/*public EnderecoDTO inserirDeFato(EnderecoInserirDTO enderec) {
 
 		Optional<Endereco> endereco = Optional.ofNullable(enderecoRepository.findByCep(enderec.getCep()));
 		if (endereco.isPresent()) {
@@ -101,7 +106,7 @@ public class EnderecoService {
 			}
 		}
 
-	}
+	}*/
 
 	public void deletarPorId(Long id) {
 		if (enderecoRepository.existsById(id)) {

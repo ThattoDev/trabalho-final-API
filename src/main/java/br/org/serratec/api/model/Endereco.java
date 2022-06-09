@@ -16,6 +16,7 @@ public class Endereco {
 	@Column(name ="idendereco")
 	private Long idendereco;
 	
+
 	@Column(name = "cep")  
 	private String cep;
 	
