@@ -57,6 +57,7 @@ public class ProdutoService {
 	public ProdutoResponseDTO editar(ProdutoInserirDTO produto, Long id) throws NotFoundException {
 		if(produtoRepository.existsById(id)) {
 			Optional<Produto> prod = produtoRepository.findById(id);
+			
 			prod.get().setNomeProduto(produto.getNomeProduto());
 			prod.get().setCusto(produto.getCusto());
 			prod.get().setPrecoUnitario(produto.getPrecoUnitario());

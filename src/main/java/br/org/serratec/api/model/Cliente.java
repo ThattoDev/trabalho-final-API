@@ -59,7 +59,7 @@ public class Cliente {
 	@Column(name = "complemento", nullable = false)
 	private String complemento;
 
-	@ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+	@ManyToOne( fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	

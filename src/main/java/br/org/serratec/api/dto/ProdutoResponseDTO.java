@@ -9,7 +9,8 @@ public class ProdutoResponseDTO {
 	
 	
 	private Long idProduto;
-	private String nomeProduto;	
+	private String nomeProduto;
+	private Double custo;
 	private Double precoUnitario;
 	private String descricaoProduto;
 	private Integer quantidadeEstoque;
@@ -21,6 +22,7 @@ public class ProdutoResponseDTO {
 	public ProdutoResponseDTO(Produto produto) {
 		this.idProduto = produto.getIdProduto();
 		this.nomeProduto = produto.getNomeProduto();
+		this.custo = produto.getCusto();
 		this.precoUnitario = produto.getPrecoUnitario();
 		this.descricaoProduto = produto.getDescricaoProduto();
 		this.quantidadeEstoque = produto.getQuantidadeEstoque();
@@ -83,4 +85,13 @@ public class ProdutoResponseDTO {
 	public void setDataCadastro(LocalDate dataCadastro) {
 		this.dataCadastro = dataCadastro;
 	}
+
+	public Double getCusto() {
+		return custo;
+	}
+
+	public void setCusto(Double custo) {
+		this.custo = custo;
+	}
+	
 }

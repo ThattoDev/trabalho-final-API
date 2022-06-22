@@ -17,7 +17,7 @@ public class Endereco {
 	private Long idendereco;
 	
 
-	@Column(name = "cep")  
+	@Column(name = "cep", unique = true)  
 	private String cep;
 	
 	@NotBlank(message = "rua vazia")  
